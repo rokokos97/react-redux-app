@@ -8,6 +8,6 @@ export function taskReducer (state,action){
             newArray[elementIndex]= {...newArray[elementIndex], ...action.payload}
             return newArray
         default:
-            break;
+            return state;
     }
 }
