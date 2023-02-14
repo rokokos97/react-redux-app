@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import ReactDOM from 'react-dom/client';
 
 function taskReducer (state,action){
@@ -15,26 +15,35 @@ function taskReducer (state,action){
 
 function createStore(reducer,initialState) {
     let state = initialState;
-    function getState(){
+    let listeners = [];
+    function getState() {
         return state
     }
-    function dispatch(action){
+    function dispatch(action) {
         state = reducer(state, action)
+        for(let i=0; i<listeners.length; i++){
+            const listener = listeners[i];
+            listener();
+        }
     }
-    return {getState, dispatch}
+    function subscribe(listener) {
+        listeners.push(listener)
+    }
+    return {getState, dispatch, subscribe}
 }
 const store = createStore(taskReducer,[{id:1, description: "Task 1", completed: false},
     {id:2, description: "Task 2", completed: false}]);
 const App = () => {
     const state = store.getState()
+    useEffect(()=>{
+        store.subscribe(()=>{console.log(store.getState())})
+    },[])
     const taskComplete = (taskId) => {
         store.dispatch({
             type: "task/completed",
             payload: {id: taskId}
         })
-        console.log(store.getState());
     }
-    console.log(store.getState());
     return (<>
             <h1>App</h1>
 
@@ -43,7 +52,7 @@ const App = () => {
                     <li key={el.id}>
                         <p>{el.description}</p>
                         <p>{`Completed: ${el.completed}`}</p>
-                        <br/>
+                        <hr/>
                         <button
                             onClick={()=>taskComplete(el.id)}
                         >
