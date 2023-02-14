@@ -2,17 +2,10 @@ import React, {useEffect, useState} from 'react';
 import ReactDOM from 'react-dom/client';
 
 function taskReducer (state,action){
-    let newArray;
-    let elementIndex;
     switch(action.type) {
-        case "task/completed" :
-            newArray = [...state]
-            elementIndex = newArray.findIndex((e) => e.id === action.payload.id)
-            newArray[elementIndex].completed = true;
-            return newArray
         case "task/updated":
-            newArray = [...state]
-            elementIndex = newArray.findIndex((e) => e.id === action.payload.id)
+            const newArray = [...state]
+            const elementIndex = newArray.findIndex((e) => e.id === action.payload.id)
             newArray[elementIndex]= {...newArray[elementIndex], ...action.payload}
             return newArray
         default:
@@ -49,8 +42,8 @@ const App = () => {
     },[])
     const taskComplete = (taskId) => {
         store.dispatch({
-            type: "task/completed",
-            payload: {id: taskId}
+            type: "task/updated",
+            payload: {id: taskId, completed: true }
         })
     }
     const changeTitle = (taskId) => {
