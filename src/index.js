@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import ReactDOM from 'react-dom/client';
-
+import { createStore } from "./store/createStore";
 function taskReducer (state,action){
     switch(action.type) {
         case "task/updated":
@@ -13,24 +13,7 @@ function taskReducer (state,action){
     }
 }
 
-function createStore(reducer,initialState) {
-    let state = initialState;
-    let listeners = [];
-    function getState() {
-        return state
-    }
-    function dispatch(action) {
-        state = reducer(state, action)
-        for(let i=0; i<listeners.length; i++){
-            const listener = listeners[i];
-            listener();
-        }
-    }
-    function subscribe(listener) {
-        listeners.push(listener)
-    }
-    return {getState, dispatch, subscribe}
-}
+
 const store = createStore(taskReducer,[{id:1, title: "Task 1", completed: false},
     {id:2, title: "Task 2", completed: false}]);
 const App = () => {
