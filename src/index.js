@@ -2,15 +2,17 @@ import React, {useEffect, useState} from 'react';
 import ReactDOM from 'react-dom/client';
 
 function taskReducer (state,action){
+    let newArray;
+    let elementIndex;
     switch(action.type) {
-        case "task/completed":
-            let newArray = [...state]
-            const elementIndex = newArray.findIndex((e) => e.id === action.payload.id)
+        case "task/completed" :
+            newArray = [...state]
+            elementIndex = newArray.findIndex((e) => e.id === action.payload.id)
             newArray[elementIndex].completed = true;
             return newArray
         case "task/updated":
-            const newArray = [...state]
-            const elementIndex = newArray.findIndex((e) => e.id === action.payload.id)
+            newArray = [...state]
+            elementIndex = newArray.findIndex((e) => e.id === action.payload.id)
             newArray[elementIndex]= {...newArray[elementIndex], ...action.payload}
             return newArray
         default:
@@ -70,6 +72,11 @@ const App = () => {
                             onClick={()=>taskComplete(el.id)}
                         >
                             Completed
+                        </button>
+                        <button
+                            onClick={()=>changeTitle(el.id)}
+                        >
+                            Change title
                         </button>
                     </li>
                 )}
