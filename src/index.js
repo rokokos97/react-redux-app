@@ -6,11 +6,15 @@ function createStore(initialState) {
     function getState(){
         return state
     }
-    return {getState}
+    function dispatch(action){
+
+    }
+    return {getState, dispatch}
 }
 const store = createStore([{id:1, description: "Task 1", status: false}]);
 const App = () => {
-    store.getState()
+    console.log(store.getState());
+    store.dispatch()
     return <h1>App</h1>
 }
 
