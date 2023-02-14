@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import ReactDOM from 'react-dom/client';
 import { createStore } from "./store/createStore";
 import { taskReducer } from "./store/taskReducer";
-import { taskUpdated } from "./store/actionTypes";
+import * as actions from "./store/actionTypes"
 
 const initialState = [
     {id:1, title: "Task 1", completed: false},
@@ -19,13 +19,13 @@ const App = () => {
     },[])
     const taskComplete = (taskId) => {
         store.dispatch({
-            type: taskUpdated,
+            type: actions.taskUpdated,
             payload: {id: taskId, completed: true }
         })
     }
     const changeTitle = (taskId) => {
         store.dispatch({
-            type: taskUpdated,
+            type: actions.taskUpdated,
             payload: {id: taskId, title:`New title for ${taskId}`}
         })
     }
