@@ -21,7 +21,7 @@ const App = () => {
     }
     const deleteTitle = (taskId) => {
         console.log(taskId);
-        // store.dispatch(actions.changeTitle(taskId))
+        store.dispatch(actions.deleteTitle(taskId))
     }
     return (<>
             <h1>App</h1>
