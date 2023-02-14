@@ -2,10 +2,14 @@ import React, {useEffect, useState} from 'react';
 import ReactDOM from 'react-dom/client';
 import { createStore } from "./store/createStore";
 import { taskReducer } from "./store/taskReducer";
+import { taskUpdated } from "./store/actionTypes";
 
+const initialState = [
+    {id:1, title: "Task 1", completed: false},
+    {id:2, title: "Task 2", completed: false}
+]
 
-const store = createStore(taskReducer,[{id:1, title: "Task 1", completed: false},
-    {id:2, title: "Task 2", completed: false}]);
+const store = createStore(taskReducer,initialState);
 const App = () => {
     const [state, setState] = useState(store.getState())
     useEffect(()=>{
@@ -15,13 +19,13 @@ const App = () => {
     },[])
     const taskComplete = (taskId) => {
         store.dispatch({
-            type: "task/updated",
+            type: taskUpdated,
             payload: {id: taskId, completed: true }
         })
     }
     const changeTitle = (taskId) => {
         store.dispatch({
-            type: "task/updated",
+            type: taskUpdated,
             payload: {id: taskId, title:`New title for ${taskId}`}
         })
     }
