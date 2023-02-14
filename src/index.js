@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import ReactDOM from 'react-dom/client';
 
 function taskReducer (state,action){
@@ -34,9 +34,11 @@ function createStore(reducer,initialState) {
 const store = createStore(taskReducer,[{id:1, description: "Task 1", completed: false},
     {id:2, description: "Task 2", completed: false}]);
 const App = () => {
-    const state = store.getState()
+    const [state, setState] = useState(store.getState())
     useEffect(()=>{
-        store.subscribe(()=>{console.log(store.getState())})
+        store.subscribe(()=>{
+            setState(store.getState())
+            })
     },[])
     const taskComplete = (taskId) => {
         store.dispatch({
