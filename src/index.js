@@ -8,7 +8,7 @@ function createStore(initialState) {
     }
     return {getState}
 }
-const store = createStore();
+const store = createStore([{id:1, description: "Task 1", status: false}]);
 const App = () => {
     store.getState()
     return <h1>App</h1>
