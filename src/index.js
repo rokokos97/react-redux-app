@@ -38,6 +38,11 @@ const App = () => {
                         >
                             Change title
                         </button>
+                        <button
+                            onClick={()=>{}}
+                        >
+                            Delete
+                        </button>
                     </li>
                 )}
             </ul>
