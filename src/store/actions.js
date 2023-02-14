@@ -14,7 +14,7 @@ export function changeTitle(id){
 }
 export function deleteTitle(id){
     return {
-        type: actions.taskUpdated,
+        type: actions.taskDelete,
         payload: {id}
     }
 }
