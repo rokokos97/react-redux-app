@@ -1,15 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 
-function CreateStore() {
-    let state;
+function createStore(initialState) {
+    let state = initialState;
     function getState(){
         return state
     }
     return {getState}
-
 }
+const store = createStore();
 const App = () => {
+    store.getState()
     return <h1>App</h1>
 }
 
