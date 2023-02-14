@@ -1,17 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import ReactDOM from 'react-dom/client';
 import { createStore } from "./store/createStore";
-function taskReducer (state,action){
-    switch(action.type) {
-        case "task/updated":
-            const newArray = [...state]
-            const elementIndex = newArray.findIndex((e) => e.id === action.payload.id)
-            newArray[elementIndex]= {...newArray[elementIndex], ...action.payload}
-            return newArray
-        default:
-            break;
-    }
-}
+import { taskReducer } from "./store/taskReducer";
 
 
 const store = createStore(taskReducer,[{id:1, title: "Task 1", completed: false},
