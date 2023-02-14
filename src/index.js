@@ -31,8 +31,8 @@ function createStore(reducer,initialState) {
     }
     return {getState, dispatch, subscribe}
 }
-const store = createStore(taskReducer,[{id:1, description: "Task 1", completed: false},
-    {id:2, description: "Task 2", completed: false}]);
+const store = createStore(taskReducer,[{id:1, title: "Task 1", completed: false},
+    {id:2, title: "Task 2", completed: false}]);
 const App = () => {
     const [state, setState] = useState(store.getState())
     useEffect(()=>{
@@ -52,7 +52,7 @@ const App = () => {
             <ul>
                 {state.map((el) =>
                     <li key={el.id}>
-                        <p>{el.description}</p>
+                        <p>{el.title}</p>
                         <p>{`Completed: ${el.completed}`}</p>
                         <hr/>
                         <button
