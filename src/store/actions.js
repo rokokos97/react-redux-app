@@ -13,6 +13,7 @@ export function changeTitle(id){
     }
 }
 export function deleteTitle(id){
+    console.log(id);
     return {
         type: actions.taskDelete,
         payload: {id}

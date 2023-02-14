@@ -10,8 +10,8 @@ export function taskReducer (state,action){
             newArray[elementIndex]= {...newArray[elementIndex], ...action.payload}
             return newArray
         case taskDelete:
-            newArray = [...state]
-            newArray.filter((e)=>e.id!==action.payload.id)
+            newArray = [...state].filter((e)=> e.id !== action.payload.id)
+            console.log(newArray);
             return newArray
         default:
             return state;
