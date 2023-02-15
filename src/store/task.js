@@ -15,20 +15,21 @@ export function changedTitle(id){
     return update({id, title:`New title for ${id}`})
 }
 export function deletedTitle(id) {
-    return remove(id)
+    return remove({id})
 }
 const reducer = createReducer(initialState,(builder) => {
     builder
-        .addCase(update,(state,action)=>{
+        .addCase(update, (state, action) => {
             const elementIndex = state.findIndex(
                 (e) => e.id === action.payload.id
             );
-            state[elementIndex]= {
+            state[elementIndex] = {
                 ...state[elementIndex],
-                ...action.payload}
+                ...action.payload
+            }
         })
-        .addCase(remove,(state,action)=>{
+        .addCase(remove, (state, action) => {
             return state.filter((e) => e.id !== action.payload.id);
         })
-})
+});
 export default reducer
