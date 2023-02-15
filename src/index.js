@@ -44,7 +44,7 @@ const App = () => {
                         <button
                             onClick={()=>deleteTitle(el.id)}
                         >
-                            delete title
+                            Delete title
                         </button>
                     </li>
                 )}
