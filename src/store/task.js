@@ -1,19 +1,19 @@
 const TASK_UPDATED = "task/updated"
 const TASK_DELETED = "task/deleted"
 
-export function taskComplete(id){
+export function taskCompleted(id){
     return {
         type: TASK_UPDATED,
         payload: {id, completed: true }
     }
 }
-export function changeTitle(id){
+export function changedTitle(id){
     return {
         type: TASK_UPDATED,
         payload: {id, title:`New title for ${id}`}
     }
 }
-export function deleteTitle(id) {
+export function deletedTitle(id) {
     return {
         type: TASK_DELETED,
         payload: {id, title: `New title for ${id}`}
