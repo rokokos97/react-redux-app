@@ -1,33 +1,26 @@
-const TASK_UPDATED = "task/updated"
-const TASK_DELETED = "task/deleted"
+import { createAction } from "@reduxjs/toolkit";
+
+const update = createAction("task/updated")
+const remove = createAction("task/remove")
 
 export function taskCompleted(id){
-    return {
-        type: TASK_UPDATED,
-        payload: {id, completed: true }
-    }
+    return update({id, completed: true })
 }
 export function changedTitle(id){
-    return {
-        type: TASK_UPDATED,
-        payload: {id, title:`New title for ${id}`}
-    }
+    return update({id, title:`New title for ${id}`})
 }
 export function deletedTitle(id) {
-    return {
-        type: TASK_DELETED,
-        payload: {id, title: `New title for ${id}`}
-    }
+    return remove(id)
 }
 
 function reducer (state, action){
     switch(action.type) {
-        case TASK_UPDATED:
+        case update.type:
             const newArray = [...state]
             const elementIndex = newArray.findIndex((e) => e.id === action.payload.id)
             newArray[elementIndex]= {...newArray[elementIndex], ...action.payload}
             return newArray
-        case TASK_DELETED:
+        case remove.type:
             return state.filter((e) => e.id !== action.payload.id);
         default:
             return state;
