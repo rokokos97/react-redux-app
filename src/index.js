@@ -14,10 +14,14 @@ const App = () => {
             })
     },[])
     const taskComplete = (taskId) => {
+        store.dispatch((getState, dispatch)=>{
+        console.log("getState", getState);
+        console.log("dispatch", dispatch);
         store.dispatch(taskCompleted(taskId))
+        })
     }
     const changeTitle = (taskId) => {
-        store.dispatch(changedTitle(taskId))
+            store.dispatch(changedTitle(taskId))
     }
     const deleteTitle = (taskId) => {
         store.dispatch(deletedTitle(taskId))
