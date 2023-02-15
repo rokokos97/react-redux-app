@@ -1,11 +1,11 @@
 import React, {useEffect, useState} from 'react';
 import ReactDOM from 'react-dom/client';
 import * as actions from "./store/task/actions"
-import {initiateStore} from "./store/store";
+import configureStore from "./store/store";
 
 
 
-const store = initiateStore()
+const store = configureStore()
 const App = () => {
     const [state, setState] = useState(store.getState())
     useEffect(()=>{
