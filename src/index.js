@@ -39,6 +39,11 @@ const App = () => {
     }
     return (<>
             <h1>App</h1>
+            <button
+                onClick={() => {}}
+            >
+                Add new task
+            </button>
             <ul>
                 {state.map((el) =>
                     <li key={el.id}>

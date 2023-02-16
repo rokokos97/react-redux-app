@@ -35,6 +35,9 @@ const taskSlice = createSlice({
     }})
 const { reducer, actions }=taskSlice
 const { update, remove, received, taskRequested, taskRequestFailed } = actions
+export const addTask = () => async (dispatch) => {
+
+}
 export const loadTasks = () => async (dispatch) => {
     dispatch(taskRequested())
     try {
