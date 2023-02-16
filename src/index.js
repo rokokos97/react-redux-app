@@ -10,7 +10,7 @@ const store = configureStore()
 
 
 const App = () => {
-    const state = useSelector((state)=>state)
+    const state = useSelector((state)=>state.entities)
     const dispatch = useDispatch()
     useEffect(()=>{
         dispatch(getTasks())
