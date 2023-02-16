@@ -41,7 +41,11 @@ const App = () => {
     return (<>
             <h1>App</h1>
             <button
-                onClick={()=>(dispatch(addTasks()))}
+                onClick={()=>dispatch(addTasks({
+                    userId: 1,
+                    title: "SOME NEW TASK",
+                    completed: false
+                }))}
             >
                 Add new task
             </button>
