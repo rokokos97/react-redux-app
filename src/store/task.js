@@ -11,7 +11,7 @@ export const getTasks = () => async (dispatch) => {
         const data = await todosService.fetch();
         dispatch(received(data))
     } catch (error) {
-        dispatch(taskRequestFailed())
+        dispatch(taskRequestFailed(error.message))
         console.log(error.message);
 
     }
