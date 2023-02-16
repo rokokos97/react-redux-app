@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom/client';
 import configureStore from "./store/store";
 import {changedTitle, completeTask, deletedTitle, getTasks} from "./store/task";
 import {Provider, useSelector, useDispatch} from "react-redux";
-import {initializeUseSelector} from "react-redux/es/hooks/useSelector";
 
 
 
@@ -27,7 +26,7 @@ const App = () => {
     if(isLoading){
         return <h1>Loading</h1>
     }
-    if(!isLoading&&error){
+    if(error){
         return <p>{error.message}</p>
     }
     return (<>

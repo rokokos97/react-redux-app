@@ -6,9 +6,6 @@ const initialState = {
     isLoading: true,
     error:null
 }
-
-const taskRequested = createAction("task/requested");
-const taskRequestFailed = createAction("task/requestFailed");
 export const getTasks = () => async (dispatch) => {
     dispatch(taskRequested())
     try {
@@ -50,7 +47,7 @@ const taskSlice = createSlice({name:"task",initialState,reducers:{
 
     }})
 const { reducer, actions }=taskSlice
-const { update, remove, received } = actions
+const { update, remove, received, taskRequested, taskRequestFailed } = actions
 
 export function changedTitle(id){
     return update({id, title:`New title for ${id}`})
