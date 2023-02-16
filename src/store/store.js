@@ -1,11 +1,13 @@
-import { createStore, compose, applyMiddleware } from "redux";
 import reducer from "./task";
 import {logger} from "./middlewere/logger";
-import {thunk} from "./middlewere/thunk";
+import {configureStore} from "@reduxjs/toolkit"
 
-const middlewareEnhancer = applyMiddleware(logger,thunk)
-function configureStore () {
-    return createStore(
-        reducer,compose(middlewareEnhancer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()))
+function createStore () {
+    return configureStore({
+        reducer,
+        middleware: (getDefaultMiddleware)=>
+            getDefaultMiddleware().concat(logger),
+        devTools: process.env.NODE_ENV !== "production"
+    })
 }
-export default configureStore;
+export default createStore;
