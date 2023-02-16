@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import ReactDOM from 'react-dom/client';
 import configureStore from "./store/store";
 import {changedTitle, completeTask, deletedTitle, getTasks} from "./store/task";
