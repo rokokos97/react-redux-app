@@ -9,6 +9,7 @@ const store = configureStore()
 const App = () => {
     const [state, setState] = useState(store.getState())
     useEffect(()=>{
+        store.dispatch(getTasks())
         store.subscribe(()=>{
             setState(store.getState())
             })
@@ -45,9 +46,6 @@ const App = () => {
                     </li>
                 )}
             </ul>
-            <button onClick={()=>store.dispatch(getTasks())}>
-                get todos
-            </button>
     </>
 
 
