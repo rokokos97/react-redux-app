@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import configureStore from "./store/store";
 import {changedTitle, completeTask, deletedTitle, getTasks} from "./store/task";
 import {Provider, useSelector, useDispatch} from "react-redux";
+import {initializeUseSelector} from "react-redux/es/hooks/useSelector";
 
 
 
@@ -11,6 +12,8 @@ const store = configureStore()
 
 const App = () => {
     const state = useSelector((state)=>state.entities)
+    const isLoading = useSelector((state)=>state.isLoading)
+    const error = useSelector((state)=>state.error)
     const dispatch = useDispatch()
     useEffect(()=>{
         dispatch(getTasks())
@@ -20,6 +23,12 @@ const App = () => {
     }
     const deleteTitle = (taskId) => {
         dispatch(deletedTitle(taskId))
+    }
+    if(isLoading){
+        return <h1>Loading</h1>
+    }
+    if(!isLoading&&error){
+        return <p>{error.message}</p>
     }
     return (<>
             <h1>App</h1>
