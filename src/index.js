@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import ReactDOM from 'react-dom/client';
 import configureStore from "./store/store";
-import task, {changedTitle, completeTask, deletedTitle, taskCompleted} from "./store/task";
+import {changedTitle, completeTask, deletedTitle, getTasks} from "./store/task";
 
 
 
@@ -45,6 +45,9 @@ const App = () => {
                     </li>
                 )}
             </ul>
+            <button onClick={()=>store.dispatch(getTasks())}>
+                get todos
+            </button>
     </>
 
 
