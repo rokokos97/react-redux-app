@@ -10,9 +10,9 @@ const store = configureStore()
 
 
 const App = () => {
-    const state = useSelector((state)=>state.entities)
-    const isLoading = useSelector((state)=>state.isLoading)
-    const error = useSelector((state)=>state.error)
+    const state = useSelector((state)=>state.task.entities)
+    const isLoading = useSelector((state)=>state.task.isLoading)
+    const error = useSelector((state)=>state.errors.entities[0])
     const dispatch = useDispatch()
     useEffect(()=>{
         dispatch(getTasks())

@@ -3,7 +3,7 @@ import {logger} from "./middlewere/logger";
 import {configureStore, combineReducers} from "@reduxjs/toolkit"
 import errorReducer from "./errors";
 const rootReducer = combineReducers({
-    error: errorReducer,
+    errors: errorReducer,
     task: reducer
 })
 function createStore () {

@@ -7,7 +7,7 @@ const initialState = {
 const errorSlice = createSlice({
     name: "error",
     initialState,
-    reducer:{
+    reducers:{
         set(state, action){
             state.entities.push(action.payload)
         }
