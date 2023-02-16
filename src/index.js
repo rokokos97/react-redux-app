@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import ReactDOM from 'react-dom/client';
 import configureStore from "./store/store";
 import {changedTitle, completeTask, deletedTitle, getTasks} from "./store/task";
-import {Provider, useSelector} from "react-redux";
+import {Provider, useSelector, useDispatch} from "react-redux";
 
 
 
@@ -11,14 +11,15 @@ const store = configureStore()
 
 const App = () => {
     const state = useSelector((state)=>state)
+    const dispatch = useDispatch()
     useEffect(()=>{
-        store.dispatch(getTasks())
-    },[])
+        dispatch(getTasks())
+    }, [])
     const changeTitle = (taskId) => {
-            store.dispatch(changedTitle(taskId))
+            dispatch(changedTitle(taskId))
     }
     const deleteTitle = (taskId) => {
-        store.dispatch(deletedTitle(taskId))
+        dispatch(deletedTitle(taskId))
     }
     return (<>
             <h1>App</h1>
@@ -29,7 +30,7 @@ const App = () => {
                         <p>{`Completed: ${el.completed}`}</p>
                         <hr/>
                         <button
-                            onClick={()=>(store.dispatch(completeTask(el.id)))}
+                            onClick={()=>(dispatch(completeTask(el.id)))}
                         >
                             Completed
                         </button>
