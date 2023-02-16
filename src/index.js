@@ -8,7 +8,8 @@ import {
     getError,
     getTaskLoadingStatus,
     getTasks,
-    loadTasks
+    loadTasks,
+    addTasks
 } from "./store/task";
 import {Provider, useSelector, useDispatch} from "react-redux";
 
@@ -40,7 +41,7 @@ const App = () => {
     return (<>
             <h1>App</h1>
             <button
-                onClick={()=>{}}
+                onClick={()=>(dispatch(addTasks()))}
             >
                 Add new task
             </button>

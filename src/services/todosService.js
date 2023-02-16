@@ -11,12 +11,7 @@ const todosService = {
         return data
     },
     get: async () => {
-        const {data} = await httpService.post(todosEndpoint,{
-            params:{
-                title: "new task",
-                complete: false
-            }
-        })
+        const {data} = await httpService.post(todosEndpoint)
         return data
     }
 }
